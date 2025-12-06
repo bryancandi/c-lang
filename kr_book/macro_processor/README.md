@@ -2,9 +2,9 @@
 
 This simple #define processor program stores macros in a hash table of linked lists. It currently supports `#define` and `#undef` to insert or remove entries from the table.
 
-- `main.c` — main function; reads and processes input
-- `macro.c` — hash table operations: `hash`, `lookup`, `install`, `undef`
-- `macro.h` — header for the hash table and macro system
+- `main.c` — main function: reads and processes input
+- `macro.c` — hash table operations: `hash`, `lookup`, `install`, `undef`, `print_hashtab`
+- `macro.h` — header: prototypes and data structures
 - `getword.c` — input utilities: `getword`, `getch`, `ungetch`
 - `Makefile` — use `make` to automate compilation
 
