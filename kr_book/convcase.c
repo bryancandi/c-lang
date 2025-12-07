@@ -28,8 +28,8 @@ int main(int argc, char *argv[])
         filename = argv[0]; // no path in argv[0], use it as-is
     }
 
-    char *dot = strrchr(filename, '.'); // strip extension (.exe) if present
-    if (dot)
+    char *dot = strrchr(filename, '.');
+    if (dot && strcmp(dot, ".exe") == 0) // Windows: strip ".exe" from filename
     {
         *dot = '\0';
     }
