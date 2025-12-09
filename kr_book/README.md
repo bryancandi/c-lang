@@ -1,6 +1,6 @@
 # K&R C Programming Language
 
-Code samples and exercises from the K&R C Proramming Language book (second edition).
+Code samples and exercises from *The C Programming Language* by Kernighan and Ritchie (Second Edition).
 
 Compile any program with:
 
