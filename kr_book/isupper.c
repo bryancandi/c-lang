@@ -1,6 +1,7 @@
 /* Exercise 7-9
- * isupper: return 1 (true) if c is an uppercase letter (custom function)
- * macro also exists in <ctype.h>
+ * isupper: return 1 if c is an uppercase ASCII letter ('A'–'Z'), otherwise 0
+ * isupper_macro: macro version of isupper
+ * The standard library provides its own isupper in <ctype.h>
  */
 
 #include <stdio.h>
