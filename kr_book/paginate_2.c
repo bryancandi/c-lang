@@ -52,6 +52,7 @@ void filecopy(FILE *ifp, FILE *ofp, const char *filename)
     int charnum = 0;
     int linenum = 0;
     int pagenum = 1;
+    // int wordlen = 0;
 
     // print header for first page
     fprintf(ofp, "File: %s\t\tPage: %d\n\n", filename, pagenum);
@@ -76,24 +77,23 @@ void filecopy(FILE *ifp, FILE *ofp, const char *filename)
                 linenum++;
                 break;
             }
-            // replace this with a loop that delays newline until outside of a word (unless the word exceeds a defined length)
             if (isalpha(c) && isalpha(nc)) // inside a word
             {
-                charnum = 1; // 1 for nc
-                linenum++;
-                putc('-', ofp); // hyphenate word
-                putc('\n', ofp);
+                charnum++;
                 putc(nc, ofp);
-            }
-            else if (nc == '.' || nc == ',' || nc == ';' || nc == ':' || nc == '!' || nc == '?' ) // punct on current line
-            {
-                charnum = 0;
-                linenum++;
-                putc(nc, ofp);
-                putc('\n', ofp);
-            }
-            else if (isspace(nc)) // don't start a newline with a space
-            {
+                // finish printing the word on the current line
+                int d;
+                while ((d = getc(ifp)) != EOF && isalpha(d))
+                {
+                    charnum++;
+                    putc(d, ofp);
+                }
+                // also include punctuation on current line if attached to a word
+                if (d == '.' || d == ',' || d == ';' || d == ':' || d == '!' || d == '?')
+                {
+                    charnum++;
+                    putc(d, ofp);
+                }
                 charnum = 0;
                 linenum++;
                 putc('\n', ofp);
@@ -103,7 +103,12 @@ void filecopy(FILE *ifp, FILE *ofp, const char *filename)
                 charnum = 1;
                 linenum++;
                 putc('\n', ofp);
-                putc(nc, ofp);
+
+                if (!isspace(nc))
+                {
+                    putc(nc, ofp);
+                }
+                // else skip the space
             }
         }
         if (linenum >= LINES_PER_PAGE)
