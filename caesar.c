@@ -27,20 +27,20 @@ int main(int argc, char *argv[])
 
     if (argc != MINARGS)
     {
-        printf("Usage: %s [-d|-e] KEY\n", argv[0]);
-        printf("Modes:\n-d:  decrypt\n-e:  encrypt\n");
+        printf("Usage: %s [-e|-d] KEY\n", argv[0]);
+        printf("Modes:\n-e:  encrypt\n-d:  decrypt\n");
         exit(1);
     }
-    if (strcmp(argv[1], "-d") != 0 && (strcmp(argv[1], "-e") != 0))
+    if (strcmp(argv[1], "-e") != 0 && (strcmp(argv[1], "-d") != 0))
     {
         printf("Invalid mode: %s\n", argv[1]);
-        printf("Modes:\n-d:  decrypt\n-e:  encrypt\n");
+        printf("Modes:\n-e:  encrypt\n-d:  decrypt\n");
         exit(2);
     }
     if (!check_digits(argv[2]))
     {
         printf("Invalid key: %s\n", argv[2]);
-        printf("Key must be a positive and contain only digits\n");
+        printf("Key must be positive and contain only digits\n");
         exit(3);
     }
 
