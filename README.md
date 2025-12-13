@@ -1,4 +1,4 @@
-# c-lang
+# The C Programming Language
 
 A collection of C programs, samples, and exercises.  
 Including standalone examples, utilities, and solutions inspired by *The C Programming Language* (Kernighan & Ritchie).
